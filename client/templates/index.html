@@ -5,10 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PixelVault</title>
 
-    <link rel="stylesheet" href="/client/styles/index.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
   </head>
   <body>
-    <h1 style="margin: 20px; border-bottom: 1px solid black">PixelVault</h1>
+    <div
+      style="
+        margin: 0px 20px 20px 20px;
+        border-bottom: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      "
+    >
+      <h1>PixelVault</h1>
+      <form
+        action="{{ url_for('logout') }}"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <button>Logout</button>
+      </form>
+    </div>
+
+    <div></div>
 
     <div class="main-wrapper">
       <div class="upload-form">
@@ -27,13 +46,13 @@
             {% for image in images %}
             <li class="image-list-item">
               <div>
-                <a href="/image/{{ image }}"
-                  ><image class="thumbnail" src="/image/{{ image }}"
+                <a href="{{ image.url }}"
+                  ><image class="thumbnail" src="{{ image.url }}"
                 /></a>
               </div>
               <div class="image-data">
-                <div>{{image}}</div>
-                <a href="/download/{{ image }}" download>Download</a>
+                <div>{{image.name}}</div>
+                <a href="{{ image.url }}" download>Download</a>
               </div>
             </li>
             {% endfor %}
